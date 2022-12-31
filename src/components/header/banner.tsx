@@ -15,7 +15,7 @@ export default component$(({ pro }: { pro: boolean }) => {
                 Sent with
                 <span class=" text-2xl sick">
                   {" "}
-                  Url Longener <span class="italic">{pro ? "Pro" : "Lite"}</span>
+                  Url Longener <span class="italic">{pro ? "Pro" : "Xpress"}</span>
                 </span>
               </span>
             </p>

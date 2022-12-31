@@ -3,7 +3,6 @@ import { DocumentHead, useLocation } from "@builder.io/qwik-city";
 
 export default component$(() => {
   const location = useLocation();
-  const src = decodeURIComponent(location.params.url);
   return (
     <div class="h-screen w-screen">
       <iframe src={decodeURIComponent(location.params.url)} class="h-screen w-screen" />

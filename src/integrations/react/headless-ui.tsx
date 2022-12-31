@@ -17,7 +17,7 @@ export const HeadlessDisclosure = qwikify$(
     imgSrc: string;
   }) => {
     return (
-      <Disclosure as="nav" className="bg-white shadow">
+      <Disclosure as="nav" className="paradise shadow">
         {({ open }) => (
           <>
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -56,9 +56,8 @@ export const HeadlessDisclosure = qwikify$(
                   </Disclosure.Button>
                 </div>
                 <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                  <div className="flex flex-shrink-0 items-center">
-                    <img className="block h-16 w-auto lg:hidden" src={logoSrc} alt="Url Longener" />
-                    <img className="hidden h-16 w-auto lg:block" src={logoSrc} alt="Url Longener" />
+                  <div className="flex flex-shrink-0 items-center p-4">
+                    <img className="block h-12 w-auto" src={logoSrc} alt="Url Longener" />
                   </div>
                   <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                     {options.map(({ name, href, current }) => (
