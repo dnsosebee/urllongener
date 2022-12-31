@@ -13,10 +13,10 @@ export default component$(({ pro }: { pro: boolean }) => {
             <p class="ml-3 truncate font-medium text-white">
               <span>
                 Sent with
-                <span class=" text-2xl sick">
+                <a class=" text-2xl sick hover:underline" href="/">
                   {" "}
                   Url Longener <span class="italic">{pro ? "Pro" : "Xpress"}</span>
-                </span>
+                </a>
               </span>
             </p>
           </div>

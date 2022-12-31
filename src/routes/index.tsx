@@ -33,13 +33,13 @@ export const Longener = component$(({ urls }: { urls: string[] }) => {
             type="submit"
             class="flex justify-center py-2 px-4 border border-transparent shadow-sm text-lg font-medium rounded-full text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-2"
           >
-            Longen My Url!
+            Please Longen My Url
           </button>
         </form>
       </div>
       {urls.length > 0 && (
         <div class="pt-8">
-          <h3 class="text-lg font-medium text-gray-900">Your Longened Urls</h3>
+          <h3 class="text-xl font-bold text-gray-900">Your Longened Urls</h3>
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 pt-6">
             {urls.map((url) => (
               <ListItem

@@ -16,7 +16,7 @@ export default component$(() => {
         >
           <p class="truncate max-w-xs">{`Or, click here to directly visit ${url}`}</p>
         </a>
-        <iframe src={url} class="w-full h-full border rounded-2xl border-white shadow-2xl" />
+        <iframe src={url} class="w-full h-screen border rounded-2xl border-white shadow-2xl" />
       </div>
     </div>
   );
