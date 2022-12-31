@@ -1,15 +1,13 @@
 import { component$, Slot } from "@builder.io/qwik";
-import Header from "../components/header/header";
+import Banner from "~/components/header/banner";
 
 export default component$(() => {
   return (
     <>
       <main>
-        <Header />
+        <Banner pro={false} />
         <section>
-          <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <Slot />
-          </div>
+          <Slot />
         </section>
       </main>
       <footer></footer>

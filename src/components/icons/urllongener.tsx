@@ -1,1 +1,1 @@
-export const UrlLongenerLogo = () => <image src="/longener.svg" width="100" height="100" />;
+export const UrlLongenerLogo = () => <image src="/longener.svg" width="40" height="40" />;

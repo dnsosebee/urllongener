@@ -1,10 +1,18 @@
 import { component$ } from "@builder.io/qwik";
+import { useLocation } from "@builder.io/qwik-city";
 import { HeadlessDisclosure } from "~/integrations/react/headless-ui";
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
-
 export default component$(() => {
-  return <HeadlessDisclosure imgSrc="/longener.svg" options={[{ name: "Home", href: "/" }]} />;
+  const location = useLocation();
+  const currentPath = location.pathname;
+  console.log(currentPath);
+  return (
+    <HeadlessDisclosure
+      imgSrc="/longener.svg"
+      options={[
+        { name: "Longener", href: "/", current: currentPath === "/" },
+        { name: "Mission", href: "/mission/", current: currentPath === "/mission/" },
+      ]}
+    />
+  );
 });

@@ -9,7 +9,13 @@ export const HeadlessTransition = qwikify$(Transition);
 //className="bg-white shadow"
 
 export const HeadlessDisclosure = qwikify$(
-  ({ options, imgSrc: logoSrc }: { options: { name: string; href: string }[]; imgSrc: string }) => {
+  ({
+    options,
+    imgSrc: logoSrc,
+  }: {
+    options: { name: string; href: string; current: boolean }[];
+    imgSrc: string;
+  }) => {
     return (
       <Disclosure as="nav" className="bg-white shadow">
         {({ open }) => (
@@ -41,9 +47,9 @@ export const HeadlessDisclosure = qwikify$(
                         className="w-6 h-6"
                       >
                         <path
-                          fill-rule="evenodd"
+                          fillRule="evenodd"
                           d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
-                          clip-rule="evenodd"
+                          clipRule="evenodd"
                         />
                       </svg>
                     )}
@@ -55,11 +61,15 @@ export const HeadlessDisclosure = qwikify$(
                     <img className="hidden h-16 w-auto lg:block" src={logoSrc} alt="Url Longener" />
                   </div>
                   <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                    {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
-                    {options.map(({ name, href }) => (
+                    {options.map(({ name, href, current }) => (
                       <a
                         href={href}
-                        className="inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900"
+                        className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${
+                          current
+                            ? "border-indigo-500 text-gray-900"
+                            : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                        }'}`}
+                        key={name}
                       >
                         {name}
                       </a>
@@ -71,12 +81,16 @@ export const HeadlessDisclosure = qwikify$(
 
             <Disclosure.Panel className="sm:hidden">
               <div className="space-y-1 pt-2 pb-4">
-                {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
-                {options.map(({ name, href }) => (
+                {options.map(({ name, href, current }) => (
                   <Disclosure.Button
                     as="a"
                     href={href}
-                    className="block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700"
+                    className={`block border-l-4 py-2 pl-3 pr-4 text-base font-medium ${
+                      current
+                        ? "bg-indigo-50 border-indigo-500 text-indigo-700"
+                        : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
+                    }`}
+                    key={name}
                   >
                     {name}
                   </Disclosure.Button>
