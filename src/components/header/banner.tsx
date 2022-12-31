@@ -7,9 +7,9 @@ export default component$(({ pro }: { pro: boolean }) => {
       <div class="mx-auto max-w-7xl py-3 px-3 sm:px-6 lg:px-8">
         <div class="flex flex-wrap items-center justify-between">
           <div class="flex flex-1 flex-shrink-0 items-center">
-            <span class=" rounded-lg bg-indigo-800 p-2">
+            <a href="/" class=" rounded-lg bg-indigo-800 p-2">
               <UrlLongenerLogo />
-            </span>
+            </a>
             <p class="ml-3 truncate font-medium text-white">
               <span>
                 Sent with

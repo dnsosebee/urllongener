@@ -150,7 +150,9 @@ export const ListItem = component$(({ url, onDelete$ }: { url: string; onDelete$
 export const UrlInput = component$(() => {
   return (
     <div class="">
-      <label class="ml-px block pl-4 text-md font-medium text-gray-700">Your Plain Url</label>
+      <label class="ml-px block pl-4 text-md font-medium text-gray-700">
+        Enter your plain URL below
+      </label>
       <div class="mt-1">
         <input
           type="url"

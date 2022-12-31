@@ -56,9 +56,9 @@ export const HeadlessDisclosure = qwikify$(
                   </Disclosure.Button>
                 </div>
                 <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                  <div className="flex flex-shrink-0 items-center p-4">
+                  <a href="/" className="flex flex-shrink-0 items-center p-4">
                     <img className="block h-12 w-auto" src={logoSrc} alt="Url Longener" />
-                  </div>
+                  </a>
                   <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                     {options.map(({ name, href, current }) => (
                       <a
