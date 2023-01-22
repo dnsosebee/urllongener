@@ -1,4 +1,4 @@
-import { $, component$ } from "@builder.io/qwik";
+import { $, component$, useClientEffect$ } from "@builder.io/qwik";
 import { DocumentHead, useNavigate } from "@builder.io/qwik-city";
 
 const Page = component$(() => {
@@ -7,15 +7,44 @@ const Page = component$(() => {
 
 export const Longener = component$(({ urls }: { urls: string[] }) => {
   const navigate = useNavigate();
+
+  useClientEffect$(() => {
+    const f = document.getElementById("form");
+    console.log("wiring up form");
+    console.log(f);
+    if (f) {
+      f.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const form = e.target as HTMLFormElement;
+        const url = form.url.value;
+        console.log("submitting", url);
+        await navigator.clipboard.writeText(longen(url));
+        alert("Url longened and copied to clipboard!");
+      });
+    }
+    const b = document.getElementById("example-url");
+    if (b) {
+      b.addEventListener("click", async () => {
+        const url = "https://timecube.2enp.com/";
+        await navigator.clipboard.writeText(longen(url));
+        alert("Url longened and copied to clipboard!");
+      });
+    }
+  });
+
   return (
     <div class="min-w-0 flex-1 items-center">
       <h2 class="pt-10 sick text-4xl">
         Url Longener <span class="italic">Xpress</span>
       </h2>
+      <p class="italic pt-3 pl-24 text-pink-900 pb-5 font-serif">
+        "The classy way the share websites on the internet."
+      </p>
       <div class="mx-auto w-full max-w-xs">
         <form
-          class="pt-8 space-y-4"
-          onSubmit$={(event: Event) => {
+          id="form"
+          class="py-4 px-6 space-y-4 shadow-2xl rounded-3xl paradise"
+          onSubmit$={async (event: Event) => {
             const form = event.target as HTMLFormElement;
             const url = form.url.value;
             if (urls.includes(url)) {
@@ -31,15 +60,37 @@ export const Longener = component$(({ urls }: { urls: string[] }) => {
           <UrlInput />
           <button
             type="submit"
-            class="flex justify-center py-2 px-4 border border-transparent shadow-sm text-lg font-medium rounded-full text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-2"
+            id="submit-url"
+            class="flex justify-center py-2 px-4 border border-transparent shadow-sm text-lg font-medium rounded-full text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-2 shadow-xl"
           >
             Please Longen My Url
           </button>
         </form>
+        <div class={urls.length > 0 ? "" : "h-5"} />
+        <button
+          onClick$={async () => {
+            const url = "https://timecube.2enp.com/";
+            if (urls.includes(url)) {
+              alert("Url already longened!");
+              return;
+            }
+            urls.push(url);
+            navigate.path = `/${encodeURIComponent(JSON.stringify(urls))}`;
+            console.log(urls);
+          }}
+          class={`italic font-serif shadow-xl flex justify-center py-1 px-2 border border-transparent shadow-sm text-lg font-medium rounded-2xl text-white bg-pink-500 hover:bg-pink-600 focus:ring-2 ${
+            urls.length > 0 ? "hidden" : ""
+          }`}
+          id="example-url"
+        >
+          Or, show me an example
+        </button>
       </div>
       {urls.length > 0 && (
         <div class="pt-8">
-          <h3 class="text-xl font-bold text-gray-900">Your Longened Urls</h3>
+          <h3 class="text-xl font-bold text-blue-900 text-center pt-5 font-serif border-t-2">
+            Your personal database of Longened URLs:
+          </h3>
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 pt-6">
             {urls.map((url) => (
               <ListItem
@@ -63,7 +114,7 @@ export const longen = (url: string) => {
 
 export const ListItem = component$(({ url, onDelete$ }: { url: string; onDelete$: () => void }) => {
   return (
-    <div key={url} class="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow">
+    <div key={url} class="col-span-1 divide-y divide-gray-200 rounded-lg paradise shadow">
       <div class="flex w-full items-center justify-between space-x-6 p-6">
         <div class="flex-1 truncate">
           <div class="flex items-center space-x-3">
@@ -71,6 +122,9 @@ export const ListItem = component$(({ url, onDelete$ }: { url: string; onDelete$
           </div>
           <p class="mt-1 truncate text-sm text-gray-500">new: {longen(url)}</p>
         </div>
+      </div>
+      <div class="flex justify-between px-4 py-2">
+        <iframe src={url} class="w-full h-32" />
       </div>
       <div>
         <div class="-mt-px flex divide-x divide-gray-200">
@@ -96,7 +150,7 @@ export const ListItem = component$(({ url, onDelete$ }: { url: string; onDelete$
                 />
               </svg>
 
-              <span class="ml-3">Visit</span>
+              <span class="ml-3">Visit your longened URL</span>
             </a>
           </div>
           <div class="-ml-px flex w-0 flex-1">
@@ -150,7 +204,7 @@ export const ListItem = component$(({ url, onDelete$ }: { url: string; onDelete$
 export const UrlInput = component$(() => {
   return (
     <div class="">
-      <label class="ml-px block pl-4 text-md font-medium text-gray-700">
+      <label class="ml-px block pl-4 text-xl font-semibold text-gray-700 rounded">
         Enter your plain URL below
       </label>
       <div class="mt-1">
@@ -159,7 +213,7 @@ export const UrlInput = component$(() => {
           name="url"
           id="url"
           class="block w-full rounded-full border border-gray-300 px-6 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-lg sm:text-md"
-          placeholder="https://www.example.com"
+          placeholder="https://timecube.2enp.com/"
         />
       </div>
     </div>

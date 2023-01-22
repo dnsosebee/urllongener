@@ -3,19 +3,21 @@ import { UrlLongenerLogo } from "../icons/urllongener";
 
 export default component$(({ pro }: { pro: boolean }) => {
   return (
-    <div class="bg-indigo-600">
+    <div class="paradise">
       <div class="mx-auto max-w-7xl py-3 px-3 sm:px-6 lg:px-8">
         <div class="flex flex-wrap items-center justify-between">
           <div class="flex flex-1 flex-shrink-0 items-center">
-            <a href="/" class=" rounded-lg bg-indigo-800 p-2">
+            <a href="/" class=" rounded-lg p-2">
               <UrlLongenerLogo />
             </a>
-            <p class="ml-3 truncate font-medium text-white">
+            <p class="ml-3 truncate font-medium text-indigo-700 ">
               <span>
                 Sent with
-                <a class=" text-2xl sick hover:underline" href="/">
-                  {" "}
-                  Url Longener <span class="italic">{pro ? "Pro" : "Xpress"}</span>
+                <a class=" text-2xl sick underline" href="/">
+                  <span class="underline">
+                    {" "}
+                    Url Longener <span class="italic">{pro ? "Pro" : "Xpress"}</span>
+                  </span>
                 </a>
               </span>
             </p>
