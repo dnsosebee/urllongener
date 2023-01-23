@@ -90,8 +90,8 @@ export const Longener = component$(({ urls }: { urls: string[] }) => {
       </div>
       {urls.length > 0 && (
         <div class="pt-8">
-          <h3 class="text-xl font-bold text-blue-900 text-center pt-5 font-serif border-t-2">
-            Be sure to share your longened URLs far and wide!
+          <h3 class="text-xl font-bold text-blue-900 text-center pt-5 font-thin border-t-2">
+            Your longened URLs. Share them far and wide!
           </h3>
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 pt-6">
             {urls.map((url) => (
