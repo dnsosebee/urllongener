@@ -43,15 +43,6 @@ export default component$(() => {
       >
         Qwik
       </a>{" "}
-      and{" "}
-      <a
-        href="https://tailwindui.com"
-        class="text-blue-500 hover:underline"
-        target="_blank"
-        rel="noopener"
-      >
-        Tailwind UI
-      </a>{" "}
       and uses <span class="italic">decentralized storage</span> (everything is stored in your URL
       bar).
       <br />
