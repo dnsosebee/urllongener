@@ -34,11 +34,13 @@ export const Longener = component$(({ urls }: { urls: string[] }) => {
 
   return (
     <div class="min-w-0 flex-1 items-center">
-      <h2 class="pt-10 sick text-4xl">
-        Url Longener <span class="italic">Xpress</span>
-      </h2>
-      <p class="italic pt-3 pl-24 text-pink-900 pb-5 font-serif">
-        "The classy way the share websites on the internet."
+      <p class="text-lg pt-10 ">
+        <span class="sick text-4xl">
+          Url Longener <span class="italic">Xpress</span>
+        </span>
+      </p>
+      <p class="italic pt-3 pl-20 text-pink-900 pb-5 font-serif">
+        "The preferred way to share websites on the internet."
       </p>
       <div class="mx-auto w-full max-w-xs">
         <form
@@ -63,7 +65,7 @@ export const Longener = component$(({ urls }: { urls: string[] }) => {
             id="submit-url"
             class="flex justify-center py-2 px-4 border border-transparent shadow-sm text-lg font-medium rounded-full text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-2 shadow-xl"
           >
-            Please Longen My Url
+            Longen My Url
           </button>
         </form>
         <div class={urls.length > 0 ? "" : "h-5"} />
@@ -89,7 +91,7 @@ export const Longener = component$(({ urls }: { urls: string[] }) => {
       {urls.length > 0 && (
         <div class="pt-8">
           <h3 class="text-xl font-bold text-blue-900 text-center pt-5 font-serif border-t-2">
-            Your personal database of Longened URLs:
+            Be sure to share your longened URLs far and wide!
           </h3>
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 pt-6">
             {urls.map((url) => (
@@ -114,17 +116,23 @@ export const longen = (url: string) => {
 
 export const ListItem = component$(({ url, onDelete$ }: { url: string; onDelete$: () => void }) => {
   return (
-    <div key={url} class="col-span-1 divide-y divide-gray-200 rounded-lg paradise shadow">
+    <div key={url} class="col-span-1 divide-y divide-gray-200 rounded-lg paradise shadow-xl">
       <div class="flex w-full items-center justify-between space-x-6 p-6">
         <div class="flex-1 truncate">
           <div class="flex items-center space-x-3">
-            <h3 class="truncate text-sm font-medium text-gray-900">old: {url}</h3>
+            <h3 class="truncate text-sm font-medium text-gray-900">
+              <span class="select-none italic font-thin">short: </span>
+              {url}
+            </h3>
           </div>
-          <p class="mt-1 truncate text-sm text-gray-500">new: {longen(url)}</p>
+          <p class="mt-1 truncate text-sm text-gray-500">
+            <span class="select-none italic font-thin">long: </span>
+            {longen(url)}
+          </p>
         </div>
       </div>
       <div class="flex justify-between px-4 py-2">
-        <iframe src={url} class="w-full h-32" />
+        <iframe src={url} class="w-full h-32 border-2 border-slate-300" />
       </div>
       <div>
         <div class="-mt-px flex divide-x divide-gray-200">
@@ -173,7 +181,7 @@ export const ListItem = component$(({ url, onDelete$ }: { url: string; onDelete$
                 />
               </svg>
 
-              <span class="ml-3">Delete</span>
+              <span class="ml-3">Remove</span>
             </button>
           </div>
         </div>
@@ -205,7 +213,7 @@ export const UrlInput = component$(() => {
   return (
     <div class="">
       <label class="ml-px block pl-4 text-xl font-semibold text-gray-700 rounded">
-        Enter your plain URL below
+        Enter any URL below
       </label>
       <div class="mt-1">
         <input
