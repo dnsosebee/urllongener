@@ -1,4 +1,4 @@
-import { $, component$, useClientEffect$ } from "@builder.io/qwik";
+import { $, component$ } from "@builder.io/qwik";
 import { DocumentHead, useNavigate } from "@builder.io/qwik-city";
 
 const Page = component$(() => {
@@ -8,29 +8,29 @@ const Page = component$(() => {
 export const Longener = component$(({ urls }: { urls: string[] }) => {
   const navigate = useNavigate();
 
-  useClientEffect$(() => {
-    const f = document.getElementById("form");
-    console.log("wiring up form");
-    console.log(f);
-    if (f) {
-      f.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const form = e.target as HTMLFormElement;
-        const url = form.url.value;
-        console.log("submitting", url);
-        await navigator.clipboard.writeText(longen(url));
-        alert("Url longened and copied to clipboard!");
-      });
-    }
-    const b = document.getElementById("example-url");
-    if (b) {
-      b.addEventListener("click", async () => {
-        const url = "https://timecube.2enp.com/";
-        await navigator.clipboard.writeText(longen(url));
-        alert("Url longened and copied to clipboard!");
-      });
-    }
-  });
+  // useClientEffect$(() => {
+  //   const f = document.getElementById("form");
+  //   console.log("wiring up form");
+  //   console.log(f);
+  //   if (f) {
+  //     f.addEventListener("submit", async (e) => {
+  //       e.preventDefault();
+  //       const form = e.target as HTMLFormElement;
+  //       const url = form.url.value;
+  //       console.log("submitting", url);
+  //       await navigator.clipboard.writeText(longen(url));
+  //       alert("Url longened and copied to clipboard!");
+  //     });
+  //   }
+  //   const b = document.getElementById("example-url");
+  //   if (b) {
+  //     b.addEventListener("click", async () => {
+  //       const url = "https://timecube.2enp.com/";
+  //       await navigator.clipboard.writeText(longen(url));
+  //       alert("Url longened and copied to clipboard!");
+  //     });
+  //   }
+  // });
 
   return (
     <div class="min-w-0 flex-1 items-center">
@@ -54,6 +54,8 @@ export const Longener = component$(({ urls }: { urls: string[] }) => {
               return;
             }
             urls.push(url);
+            await navigator.clipboard.writeText(longen(url));
+            alert("Url longened and copied to clipboard!");
             navigate.path = `/${encodeURIComponent(JSON.stringify(urls))}`;
             console.log(urls);
           }}
@@ -77,6 +79,8 @@ export const Longener = component$(({ urls }: { urls: string[] }) => {
               return;
             }
             urls.push(url);
+            await navigator.clipboard.writeText(longen(url));
+            alert("Url longened and copied to clipboard!");
             navigate.path = `/${encodeURIComponent(JSON.stringify(urls))}`;
             console.log(urls);
           }}
